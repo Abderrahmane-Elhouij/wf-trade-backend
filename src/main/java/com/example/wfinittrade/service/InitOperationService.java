@@ -1,6 +1,6 @@
-package com.example.wfinittrade.facade;
+package com.example.wfinittrade.service;
 
-import com.example.wfinittrade.Model.InitOperation;
+import com.example.wfinittrade.model.InitOperation;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

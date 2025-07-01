@@ -1,6 +1,6 @@
-package com.example.wfinittrade.Repository;
+package com.example.wfinittrade.repository;
 
-import com.example.wfinittrade.Model.InitOperation;
+import com.example.wfinittrade.model.InitOperation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import java.math.BigDecimal;

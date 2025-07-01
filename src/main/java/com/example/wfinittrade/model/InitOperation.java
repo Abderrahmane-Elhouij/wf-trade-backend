@@ -1,4 +1,4 @@
-package com.example.wfinittrade.Model;
+package com.example.wfinittrade.model;
 
 import com.google.common.base.MoreObjects;
 import jakarta.persistence.*;
