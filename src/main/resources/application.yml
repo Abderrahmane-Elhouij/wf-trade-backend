@@ -1,15 +1,14 @@
 application:
-    name: my-application
-    version: 1.0.0
+  name: my-application
+  version: 1.0.0
 spring:
-    datasource:
-        url: jdbc:mysql://localhost:3306/wf_init_trade
-        username: root
-        password: chibora53
-        driver-class-name: com.mysql.cj.jdbc.Driver
+  datasource:
+    url: jdbc:mysql://localhost:3306/wf_init_trade
+    username: root
+    password: chibora53
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
 server:
-    port: 8080
-    servlet:
-        context-path: /
-swagger:
-    enabled: true
+  port: 8080
+  servlet:
+    context-path: /api
