@@ -7,12 +7,14 @@ import com.example.wfinittrade.controller.dto.OperationByProductTypeDto;
 import com.example.wfinittrade.controller.dto.OperationStatusDistributionDto;
 import com.example.wfinittrade.controller.dto.InitOperationDto;
 import com.example.wfinittrade.service.facade.InitOperationService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/init-operations")
 public class InitOperationController {
