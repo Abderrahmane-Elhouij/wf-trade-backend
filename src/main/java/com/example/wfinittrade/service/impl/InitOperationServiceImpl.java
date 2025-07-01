@@ -85,7 +85,7 @@ public class InitOperationServiceImpl implements InitOperationService {
     public List<CustomerTypeDistributionDto> getCustomerTypeDistribution() {
         List<InitOperation> operations = initOperationRepository.findAll();
         return operations.stream()
-                .collect(Collectors.groupingBy(op -> op.getDonneurOrdreVip() != null && op.getDonneurOrdreVip() ? "VIP" : "Regular"))
+                .collect(Collectors.groupingBy(op -> op.getDonneurOrdreVip() != null && op.getDonneurOrdreVip() ? "VIP" : "Régulier"))
                 .entrySet().stream()
                 .map(entry -> {
                     String customerType = entry.getKey();
