@@ -3,10 +3,13 @@ package com.example.wfinittrade.repository;
 import com.example.wfinittrade.model.InitOperation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+@Repository
 public interface InitOperationRepository extends JpaRepository<InitOperation, Integer> {
 
         long countByOperationDraftTrue();

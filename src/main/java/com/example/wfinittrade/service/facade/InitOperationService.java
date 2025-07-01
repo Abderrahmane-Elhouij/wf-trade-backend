@@ -1,5 +1,9 @@
-package com.example.wfinittrade.service;
+package com.example.wfinittrade.service.facade;
 
+import com.example.wfinittrade.controller.dto.CustomerTypeDistributionDto;
+import com.example.wfinittrade.controller.dto.GeographicDistributionDto;
+import com.example.wfinittrade.controller.dto.OperationByProductTypeDto;
+import com.example.wfinittrade.controller.dto.OperationStatusDistributionDto;
 import com.example.wfinittrade.model.InitOperation;
 
 import java.math.BigDecimal;
@@ -39,4 +43,12 @@ public interface InitOperationService {
     List<InitOperation> getOperationsBetween(LocalDate start, LocalDate end);
 
     List<InitOperation> getAllOperations();
+
+    List<OperationStatusDistributionDto> getOperationStatusDistribution();
+
+    List<OperationByProductTypeDto> getOperationByProductType();
+
+    List<GeographicDistributionDto> getGeographicDistribution();
+
+    List<CustomerTypeDistributionDto> getCustomerTypeDistribution();
 }
