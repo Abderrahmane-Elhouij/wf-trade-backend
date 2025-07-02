@@ -1,9 +1,6 @@
 package com.example.wfinittrade.service.impl;
 
-import com.example.wfinittrade.controller.dto.CustomerTypeDistributionDto;
-import com.example.wfinittrade.controller.dto.GeographicDistributionDto;
-import com.example.wfinittrade.controller.dto.OperationByProductTypeDto;
-import com.example.wfinittrade.controller.dto.OperationStatusDistributionDto;
+import com.example.wfinittrade.controller.dto.*;
 import com.example.wfinittrade.model.InitOperation;
 import com.example.wfinittrade.repository.InitOperationRepository;
 import com.example.wfinittrade.service.facade.InitOperationService;
@@ -14,6 +11,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class InitOperationServiceImpl implements InitOperationService {
@@ -38,6 +36,7 @@ public class InitOperationServiceImpl implements InitOperationService {
         
         return distributionList;
     }
+
 
     @Override
     public List<OperationByProductTypeDto> getOperationByProductType() {
@@ -86,6 +85,35 @@ public class InitOperationServiceImpl implements InitOperationService {
         }
         
         return customerTypeList;
+    }
+
+    @Override
+    public List<OperationByDateValiditeDto> findByoperationByDateValidite(int year) {
+        if (year == 0) {
+            year = java.time.LocalDate.now().getYear();
+        }
+
+        List<Object[]> results = initOperationRepository.findByOperationDateValidite(year);
+        List<String> allProductNames = initOperationRepository.findAllDistinctProductNames();
+
+        Map<Integer, Map<String, OperationByDateValiditeStatsDto>> monthProductStats = new java.util.HashMap<>();
+        for (Object[] result : results) {
+            int month = ((Number) result[0]).intValue();
+            int count_operation = ((Number) result[1]).intValue();
+            String productName = (String) result[2];
+            monthProductStats.computeIfAbsent(month, k -> new java.util.HashMap<>())
+                .put(productName, new OperationByDateValiditeStatsDto(productName, count_operation));
+        }
+        List<OperationByDateValiditeDto> dtoList = new ArrayList<>();
+        for (int m = 1; m <= 12; m++) {
+            Map<String, OperationByDateValiditeStatsDto> statsMap = monthProductStats.getOrDefault(m, new java.util.HashMap<>());
+            List<OperationByDateValiditeStatsDto> stats = new ArrayList<>();
+            for (String product : allProductNames) {
+                stats.add(statsMap.getOrDefault(product, new OperationByDateValiditeStatsDto(product, 0)));
+            }
+            dtoList.add(new OperationByDateValiditeDto(m, stats));
+        }
+        return dtoList;
     }
 
     @Autowired

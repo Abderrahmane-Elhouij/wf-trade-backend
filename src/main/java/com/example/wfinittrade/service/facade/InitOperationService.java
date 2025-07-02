@@ -1,9 +1,6 @@
 package com.example.wfinittrade.service.facade;
 
-import com.example.wfinittrade.controller.dto.CustomerTypeDistributionDto;
-import com.example.wfinittrade.controller.dto.GeographicDistributionDto;
-import com.example.wfinittrade.controller.dto.OperationByProductTypeDto;
-import com.example.wfinittrade.controller.dto.OperationStatusDistributionDto;
+import com.example.wfinittrade.controller.dto.*;
 import com.example.wfinittrade.model.InitOperation;
 
 import java.util.List;
@@ -19,4 +16,6 @@ public interface InitOperationService {
     List<GeographicDistributionDto> getGeographicDistribution();
 
     List<CustomerTypeDistributionDto> getCustomerTypeDistribution();
+
+    List<OperationByDateValiditeDto> findByoperationByDateValidite(int year);
 }

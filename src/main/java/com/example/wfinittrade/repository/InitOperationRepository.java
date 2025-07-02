@@ -46,7 +46,6 @@ public interface InitOperationRepository extends JpaRepository<InitOperation, In
             WHERE beneficiaire_pays IS NOT NULL
             GROUP BY beneficiaire_pays
             ORDER BY operation_count DESC
-            LIMIT 10
             """, nativeQuery = true)
         List<Object[]> findGeographicDistribution();
         
@@ -59,4 +58,20 @@ public interface InitOperationRepository extends JpaRepository<InitOperation, In
             GROUP BY donneur_ordre_vip
             """, nativeQuery = true)
         List<Object[]> findCustomerTypeDistribution();
+
+        @Query(value = """
+            SELECT 
+                MONTH(operation_date_validite) as month,
+                COUNT(*) as operation_count,
+                operation_Produit
+            FROM init_operation 
+            WHERE operation_Produit IS NOT NULL
+            And YEAR(operation_date_validite) = :year
+            GROUP BY MONTH(operation_date_validite), operation_Produit
+            ORDER BY operation_count DESC
+            """, nativeQuery = true)
+        List<Object[]> findByOperationDateValidite( int year);
+
+        @Query(value = "SELECT DISTINCT operation_produit FROM init_operation WHERE operation_produit IS NOT NULL", nativeQuery = true)
+        List<String> findAllDistinctProductNames();
 }
