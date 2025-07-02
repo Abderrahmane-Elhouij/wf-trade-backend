@@ -17,5 +17,5 @@ public interface InitOperationService {
 
     List<CustomerTypeDistributionDto> getCustomerTypeDistribution();
 
-    List<OperationByDateValiditeDto> findByoperationByDateValidite(int year);
+    List<OperationByDateValiditeDto> findByoperationByDateValidite(Integer year);
 }

@@ -88,8 +88,8 @@ public class InitOperationServiceImpl implements InitOperationService {
     }
 
     @Override
-    public List<OperationByDateValiditeDto> findByoperationByDateValidite(int year) {
-        if (year == 0) {
+    public List<OperationByDateValiditeDto> findByoperationByDateValidite(Integer year) {
+        if (year == null || year == 0) {
             year = java.time.LocalDate.now().getYear();
         }
 

@@ -45,6 +45,6 @@ public class InitOperationController {
         return initOperationService.getCustomerTypeDistribution();
     }
     @GetMapping("/Date-Validite")
-    public List<OperationByDateValiditeDto> getOperationsByDateValidite(@RequestParam("year") int year) {
+    public List<OperationByDateValiditeDto> getOperationsByDateValidite(@RequestParam(value = "year", required = false) Integer year) {
         return initOperationService.findByoperationByDateValidite(year);
     }}
